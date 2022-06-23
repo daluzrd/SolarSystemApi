@@ -1,11 +1,11 @@
-﻿namespace Domain.Entities
+﻿namespace Domain.Generics
 {
-    public class SolarSytem
+    public abstract class BaseModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public bool IsValid() => Name != null;
+        public abstract bool IsValid();
     }
 }

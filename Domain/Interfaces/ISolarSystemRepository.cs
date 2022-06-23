@@ -1,14 +1,11 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces.Generics;
 using System.Linq;
 
 namespace Domain.Interfaces
 {
-    public interface ISolarSystemRepository
+    public interface ISolarSystemRepository : IRepository<SolarSystem>
     {
-        IQueryable<SolarSytem> Get(string search = null);
-        SolarSytem GetById(int id);
-        SolarSytem Insert(SolarSytem solarSystem);
-        SolarSytem Update(SolarSytem solarSystem);
-        void Delete(int id);
+        IQueryable<SolarSystem> Get(string search = null);
     }
 }

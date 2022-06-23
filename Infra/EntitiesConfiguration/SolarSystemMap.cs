@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infra.EntitiesConfiguration
 {
-    public class SolarSystemMap : IEntityTypeConfiguration<SolarSytem>
+    public class SolarSystemMap : IEntityTypeConfiguration<SolarSystem>
     {
-        public void Configure(EntityTypeBuilder<SolarSytem> builder)
+        public void Configure(EntityTypeBuilder<SolarSystem> builder)
         {
             builder.HasKey(prop => prop.Id);
             builder.Property(prop => prop.Name).IsRequired();

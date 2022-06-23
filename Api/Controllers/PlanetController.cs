@@ -7,18 +7,18 @@ using System;
 namespace Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class SolarSystemController : ControllerBase
+    [Route("Api/[controller]")]
+    public class PlanetController : ControllerBase
     {
-        private readonly ISolarSystemRepository _repository;
+        private readonly IPlanetRepository _repository;
 
-        public SolarSystemController(ISolarSystemRepository repository)
+        public PlanetController(IPlanetRepository repository)
         {
             _repository = repository;
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SolarSystem[]))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Planet[]))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get(string search = null)
         {
@@ -33,7 +33,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SolarSystem))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Planet))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetById(int id)
         {
@@ -48,14 +48,14 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SolarSystem))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Planet))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Post(SolarSystem solarSystem)
+        public IActionResult Post(Planet planet)
         {
             try
             {
-                return CreatedAtAction("Post", _repository.Insert(solarSystem));
+                return CreatedAtAction("Post", _repository.Insert(planet));
             }
             catch (FormatException e)
             {
@@ -68,14 +68,14 @@ namespace Api.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SolarSystem))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Planet))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Put(SolarSystem solarSystem)
+        public IActionResult Put(Planet planet)
         {
             try
             {
-                return CreatedAtAction("Put", _repository.Update(solarSystem));
+                return CreatedAtAction("Put", _repository.Update(planet));
             }
             catch (FormatException e)
             {
@@ -88,7 +88,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SolarSystem))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Planet))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Delete(int id)
         {

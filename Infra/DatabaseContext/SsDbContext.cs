@@ -5,9 +5,12 @@ namespace Infra.DatabaseContext
 {
     public class SsDbContext : DbContext
     {
-        public SsDbContext(DbContextOptions<SsDbContext> options) : base(options) {}
+        public SsDbContext(DbContextOptions<SsDbContext> options) : base(options)
+        {
+        }
 
-        public DbSet<SolarSytem> SolarSytem { get; set; }   
+        public DbSet<SolarSystem> SolarSystem { get; set; }
+        public DbSet<Planet> Planet { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

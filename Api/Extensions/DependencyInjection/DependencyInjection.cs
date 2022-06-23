@@ -18,6 +18,7 @@ namespace Api.Extensions.DependencyInjection
                             );
 
             services.AddScoped<ISolarSystemRepository, SolarSystemRepository>();
+            services.AddScoped<IPlanetRepository, PlanetRepository>();
 
             return services;
         }

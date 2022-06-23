@@ -2,15 +2,17 @@
 using Infra.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Infra.Migrations
 {
     [DbContext(typeof(SsDbContext))]
-    partial class SsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220623164026_AddPlanetTable")]
+    partial class AddPlanetTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace Infra.Migrations
 
                     b.Property<double>("Circumference")
                         .HasColumnType("double precision");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
 
                     b.Property<bool>("HasLife")
                         .HasColumnType("boolean");
@@ -51,7 +50,7 @@ namespace Infra.Migrations
                     b.ToTable("Planet");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SolarSystem", b =>
+            modelBuilder.Entity("Domain.Entities.SolarSytem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,12 +66,12 @@ namespace Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SolarSystem");
+                    b.ToTable("SolarSytem");
                 });
 
             modelBuilder.Entity("Domain.Entities.Planet", b =>
                 {
-                    b.HasOne("Domain.Entities.SolarSystem", "SolarSystem")
+                    b.HasOne("Domain.Entities.SolarSytem", "SolarSystem")
                         .WithMany("Planets")
                         .HasForeignKey("SolarSystemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -81,7 +80,7 @@ namespace Infra.Migrations
                     b.Navigation("SolarSystem");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SolarSystem", b =>
+            modelBuilder.Entity("Domain.Entities.SolarSytem", b =>
                 {
                     b.Navigation("Planets");
                 });
