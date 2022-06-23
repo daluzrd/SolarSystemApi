@@ -1,4 +1,6 @@
+using Domain.Interfaces;
 using Infra.DatabaseContext;
+using Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +16,8 @@ namespace Api.Extensions.DependencyInjection
                                     x => x.MigrationsAssembly(typeof(SsDbContext).Assembly.FullName)
                                 ).EnableSensitiveDataLogging()
                             );
+
+            services.AddScoped<ISolarSystemRepository, SolarSystemRepository>();
 
             return services;
         }
