@@ -18,7 +18,8 @@ namespace Infra.EntitiesConfiguration
 
             builder.Property(prop => prop.Population).IsRequired();
 
-            builder.HasOne(prop => prop.SolarSystem)
+            builder
+                .HasOne(prop => prop.SolarSystem)
                 .WithMany(prop => prop.Planets)
                 .HasForeignKey(prop => prop.SolarSystemId);
         }

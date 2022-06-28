@@ -1,4 +1,5 @@
-﻿using Domain.Generics;
+﻿using System;
+using Domain.Generics;
 
 namespace Domain.Entities
 {
@@ -7,7 +8,7 @@ namespace Domain.Entities
         public bool HasLife { get; set; }
         public double Circumference { get; set; }
         public int Population { get; set; }
-        public int SolarSystemId { get; set; }
+        public Guid SolarSystemId { get; set; }
         public virtual SolarSystem SolarSystem { get; set; }
 
         public override bool IsValid() => Name != null;

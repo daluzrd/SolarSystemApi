@@ -18,7 +18,7 @@ namespace Infra.Repositories.Generics
         public IQueryable<T> Get(Func<T, bool> searchLambda) =>
             _context.Set<T>().Where(searchLambda).AsQueryable();
 
-        public T GetById(int id) => _context.Set<T>().FirstOrDefault(g => g.Id == id);
+        public T GetById(Guid id) => _context.Set<T>().FirstOrDefault(g => g.Id == id);
 
         public T Insert(T entity)
         {
@@ -46,10 +46,11 @@ namespace Infra.Repositories.Generics
             throw new FormatException("Entity missing required fields");
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             var entity = GetById(id);
-            if (entity == null) return;
+            if (entity == null)
+                return;
 
             _context.Set<T>().Remove(entity);
             _context.SaveChanges();
